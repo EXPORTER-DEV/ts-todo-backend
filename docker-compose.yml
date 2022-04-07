@@ -1,0 +1,28 @@
+version: "3.2"
+services:
+  todo-app:
+    build: .
+    container_name: todo-app
+    volumes: 
+      - ./dist:/usr/src/app/dist
+    env_file: .env.production
+    restart: always
+    ports: 
+      - "${PORT}:${PORT}"
+  todo-mysql:
+    platform: linux/x86_64
+    image: percona:8.0
+    container_name: todo-mysql
+    environment: 
+      - "MYSQL_DATABASE=${DATABASE_NAME}"
+      - "MYSQL_USER=${DATABASE_USER}"
+      - "MYSQL_PASSWORD=${DATABASE_PASSWORD}"
+      - MYSQL_ROOT_PASSWORD=secret-root-password
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    restart: always
+    healthcheck: 
+      test: ["CMD", '/etc/init.d/mysql', 'status' ]
+      timeout: 10s
+      interval: 2m
+      retries: 3
