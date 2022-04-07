@@ -1,7 +1,7 @@
-import { BaseResponse } from "../../../../common/models/base-response";
+import { BaseResponseDto } from "../../../../common/models/base-response.dto";
 import { TodoEntity } from "../todo.entity";
 
-export class TodoListDto implements BaseResponse {
+export class TodoListDto implements BaseResponseDto {
     status: boolean;
     data?: TodoEntity[];
 }

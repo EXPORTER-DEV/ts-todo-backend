@@ -1,6 +1,6 @@
 import { Body, Controller, ForbiddenException, Get, NotFoundException, Post, Request, ServiceUnavailableException, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
-import { BaseResponse } from '../../common/models/base-response';
+import { BaseResponseDto } from '../../common/models/base-response.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Public } from '../auth/decorators/public.decorator';
 import { PostUserLoginDto } from './models/dto/post-user-login.dto';
@@ -31,7 +31,7 @@ export class UserController {
                 }
             })
         }
-        return plainToClass(BaseResponse, {
+        return plainToClass(BaseResponseDto, {
             status: false,
         });
     }
@@ -52,9 +52,9 @@ export class UserController {
     }
     @Guest()
     @Post('/register')
-    async register(@Body() data: PostUserRegisterDto): Promise<BaseResponse>{
+    async register(@Body() data: PostUserRegisterDto): Promise<BaseResponseDto>{
         const register = await this.userService.register(data.email, data.password, data.firstname, data.lastname);
-        return plainToClass(BaseResponse, {
+        return plainToClass(BaseResponseDto, {
             status: register,
         });
     }

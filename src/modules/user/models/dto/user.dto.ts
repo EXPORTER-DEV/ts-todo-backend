@@ -1,7 +1,19 @@
-import { BaseResponse } from "../../../../common/models/base-response";
+import { ApiProperty } from "@nestjs/swagger";
+import { BaseResponseDto } from "../../../../common/models/base-response.dto";
 import { UserEntity } from "../user.entity";
 
-export class UserDto extends BaseResponse {
+export class UserEntityDto implements Partial<UserEntity> {
+    id: number;
+    email: string;
+    firstname: string;
+    lastname: string;
+    created_at: number;
+}
+
+export class UserDto extends BaseResponseDto {
     status: boolean;
-    data?: Partial<UserEntity>;
+    @ApiProperty({
+        type: UserEntityDto,
+    })
+    data?: UserEntityDto;
 }

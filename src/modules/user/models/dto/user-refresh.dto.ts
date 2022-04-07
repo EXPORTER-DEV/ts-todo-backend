@@ -1,6 +1,6 @@
-import { BaseResponse } from "../../../../common/models/base-response";
+import { BaseResponseDto } from "../../../../common/models/base-response.dto";
 
-export class UserRefreshDto extends BaseResponse {
+export class UserRefreshDto extends BaseResponseDto {
     status: boolean;
     data?: {
         access_token: string;

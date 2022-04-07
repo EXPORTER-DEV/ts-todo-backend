@@ -1,30 +1,22 @@
 # ts-todo-backend
 > Nest + TypeORM + Mysql Todo Application Backend
 
-## Todo
+## Development tasks:
 
-- [ ] Add Swagger support
-- [ ] Create Initial Migration
-- [ ] Add unit tests.
+- [x] Add Swagger support
+- [ ] Make unit tests.
+- [x] Create Initial Migration
+- [x] Add docker support.
 
 
-## Installation
+# Running the environment inside Docker
 
+> For running the application and its database inside Docker containers.
+
+1. Copy `.env.example` file to `.env.production`
+2. Run shell script:
 ```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ sh ./start.sh
 ```
 
 ## Test

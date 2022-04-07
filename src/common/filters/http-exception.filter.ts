@@ -2,7 +2,7 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, Logger } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { Request, Response } from 'express';
-import { BaseResponse } from '../models/base-response';
+import { BaseResponseDto } from '../models/base-response.dto';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -24,7 +24,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
             data = exceptionResponse.message;
         }
 
-        const baseResponse = plainToClass(BaseResponse, {
+        const baseResponse = plainToClass(BaseResponseDto, {
             status: false,
             message: `${name}: ${message}`,
             data,

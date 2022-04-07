@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, Get, Param, Post, Put, Query, Req } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { Request } from 'express';
-import { BaseResponse } from '../../common/models/base-response';
+import { BaseResponseDto } from '../../common/models/base-response.dto';
 import { CreateTodoDto } from './models/dto/create-todo.dto';
 import { PostCreateTodoDto } from './models/dto/post-create-todo.dto';
 import { PutTodoCompletedDto } from './models/dto/put-todo-completed.dto';
@@ -33,9 +33,9 @@ export class TodoController {
     }
 
     @Put(':todoId/completed')
-    async setCompleted(@Req() request: Request, @Param('todoId') todoId: number, @Query() query: PutTodoCompletedDto): Promise<BaseResponse> {
+    async setCompleted(@Req() request: Request, @Param('todoId') todoId: number, @Query() query: PutTodoCompletedDto): Promise<BaseResponseDto> {
         const status = await this.todoService.setCompleted(todoId, query.state, request.user.id);
-        return plainToClass(BaseResponse, {
+        return plainToClass(BaseResponseDto, {
             status,
         });
     }
