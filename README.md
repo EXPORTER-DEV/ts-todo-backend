@@ -19,6 +19,7 @@
 $ sh ./start.sh
 ```
 3. It will be running on PORT (from `.env.production` config), if whole config is like in `.env.example`: [just check Swagger](http://localhost:4000/swagger)
+4. Use frontend app from [another repository](https://github.com/EXPORTER-DEV/ts-todo-frontend)
 
 ## Test
 
