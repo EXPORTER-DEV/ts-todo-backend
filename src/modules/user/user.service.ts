@@ -17,10 +17,11 @@ export class UserService {
     ){}
     async login(email: string, password: string): Promise<IUserLoginResult | false> {
         const user = await this.authService.validateUser(email, password);
-        if(user.refresh_hash === undefined){
-            user.refresh_hash = await bcrypt.genSalt(10);
-        }
         if(user !== undefined){
+            if(user.refresh_hash === undefined){
+                user.refresh_hash = await bcrypt.genSalt(10);
+                await this.userRepository.save(user);
+            }
             const access_token = await this.authService.generateSessionToken(user);
             const refresh_token = await this.authService.generateRefreshToken(user, user.refresh_hash);
             return {
