@@ -67,7 +67,7 @@ export class UserService {
                 lastname
             });
             try {
-                this.userRepository.save(user);
+                await this.userRepository.save(user);
                 return true;
             }catch(e){
                 this.logger.error(e.message, e.stack);
