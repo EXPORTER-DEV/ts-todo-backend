@@ -6,7 +6,13 @@ describe('TodoService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TodoService],
+      providers: [
+        TodoService,
+        {
+          provide: 'TodoEntityRepository',
+          useValue: {}
+        }
+      ],
     }).compile();
 
     service = module.get<TodoService>(TodoService);
