@@ -3,7 +3,7 @@
 
 ## Development tasks:
 
-- [ ] Make unit tests.
+- [x] Make unit & e2e tests.
 - [x] Add Swagger support
 - [x] Create Initial Migration
 - [x] Add docker support.
